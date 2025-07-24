@@ -7,8 +7,21 @@ import 'core/di/service_locator.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Initialize dependency injection
-  await setupServiceLocator();
+  try {
+    // Initialize dependency injection with timeout
+    await setupServiceLocator().timeout(
+      const Duration(seconds: 10),
+      onTimeout: () {
+        debugPrint(
+          'Service locator setup timed out, continuing with default setup',
+        );
+        return;
+      },
+    );
+  } catch (e) {
+    debugPrint('Error during service locator setup: $e');
+    // Continue with app initialization even if service setup fails
+  }
 
   runApp(const PortfolioApp());
 }
