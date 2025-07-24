@@ -4,8 +4,7 @@
     "dart.formatOnSave": true,
     "dart.analysisExcludedFolders": [
         "portfolio/build/**",
-        "portfolio/.dart_tool/**",
-        "web/**"
+        "portfolio/.dart_tool/**"
     ],
     "dart.debugExternalPackageLibraries": false,
     "dart.debugSdkLibraries": false,
@@ -14,7 +13,16 @@
     "files.exclude": {
         "**/.dart_tool": true,
         "**/build": true,
-        "web/**": false
+        "main.dart.js": true,
+        "flutter_service_worker.js": true,
+        "flutter.js": true,
+        "flutter_bootstrap.js": true,
+        "version.json": true,
+        ".last_build_id": true,
+        "canvaskit/": true,
+        "assets/AssetManifest.*": true,
+        "assets/FontManifest.json": true,
+        "assets/NOTICES": true
     },
     "files.watcherExclude": {
         "**/.dart_tool/**": true,

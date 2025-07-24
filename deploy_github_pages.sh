@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # GitHub Pages Deployment Script for Flutter Portfolio
-# This script builds the Flutter web app and deploys it to GitHub Pages
+# This script builds Flutter web app and deploys files directly to repository root
 
 set -e  # Exit on any error
 
-echo "🚀 Starting GitHub Pages Deployment..."
-echo "======================================"
+echo "🚀 Starting GitHub Pages Deployment (Root Mode)..."
+echo "=================================================="
 
 # Navigate to portfolio directory
 cd portfolio
@@ -26,13 +26,14 @@ flutter build web --release
 # Navigate back to root
 cd ..
 
-# 4. Clean web directory
-echo "🗑️ Cleaning web directory..."
-rm -rf web/*
+# 4. Clean existing web files from root
+echo "🗑️ Cleaning existing web files from root..."
+find . -maxdepth 1 -name "*.js" -o -name "*.html" -o -name "*.json" -o -name "*.png" | grep -E "\.(js|html|json|png)$" | xargs rm -f || true
+rm -rf assets canvaskit icons flutter_service_worker.js .last_build_id version.json || true
 
-# 5. Copy build to web directory
-echo "📂 Copying build files..."
-cp -r portfolio/build/web/. web/
+# 5. Copy build files to root
+echo "📂 Copying build files to root..."
+cp -r portfolio/build/web/. .
 
 # 6. Clean portfolio build directory
 echo "🧹 Cleaning portfolio build directory..."
@@ -41,15 +42,11 @@ rm -rf portfolio/build/
 # 7. Add and commit changes
 echo "📝 Committing changes..."
 git add .
-git commit -m "Deploy: Updated web build for GitHub Pages"
+git commit -m "Deploy: Updated web build for GitHub Pages (root deployment)"
 
-# 8. Push to master
-echo "⬆️ Pushing to master..."
-git push origin master
-
-# 9. Deploy to GitHub Pages using subtree
+# 8. Deploy to GitHub Pages
 echo "🌐 Deploying to GitHub Pages..."
-git subtree push --prefix web origin gh-pages
+git push origin master:gh-pages --force
 
 echo "✅ Deployment completed successfully!"
 echo "🌍 Your site should be available at:"
@@ -60,4 +57,6 @@ echo "   1. Go to your GitHub repository settings"
 echo "   2. Navigate to Pages section"
 echo "   3. Set source to 'Deploy from a branch'"
 echo "   4. Select 'gh-pages' branch and '/ (root)' folder"
-echo "   5. Save and wait for deployment" 
+echo "   5. Save and wait for deployment"
+echo ""
+echo "📝 Note: Web files are now deployed directly to the repository root" 
