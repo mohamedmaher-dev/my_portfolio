@@ -28,5 +28,15 @@
         "key": "ctrl+shift+d",
         "command": "workbench.action.tasks.runTask",
         "args": "Flutter: Run Dev Server"
+    },
+    {
+        "key": "ctrl+alt+d",
+        "command": "workbench.action.tasks.runTask",
+        "args": "Portfolio: Complete Clean Build & Deploy"
+    },
+    {
+        "key": "ctrl+alt+p",
+        "command": "workbench.action.tasks.runTask",
+        "args": "Portfolio: Build & Deploy to GitHub Pages"
     }
 ] 

@@ -168,6 +168,168 @@
             "isBackground": true,
             "problemMatcher": [],
             "detail": "🛠️ Start Flutter development server on port 3000"
+        },
+        {
+            "label": "Flutter: Clean",
+            "type": "shell",
+            "command": "flutter",
+            "args": ["clean"],
+            "options": {
+                "cwd": "${workspaceFolder}/portfolio"
+            },
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "detail": "🧹 Clean Flutter build cache and files"
+        },
+        {
+            "label": "Delete Web Directory",
+            "type": "shell",
+            "command": "rm",
+            "args": ["-rf", "web/*"],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "shared"
+            },
+            "detail": "🗑️ Delete all files in web directory"
+        },
+        {
+            "label": "Delete Portfolio Build",
+            "type": "shell",
+            "command": "rm",
+            "args": ["-rf", "build/"],
+            "options": {
+                "cwd": "${workspaceFolder}/portfolio"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "shared"
+            },
+            "detail": "🗑️ Delete build directory in portfolio"
+        },
+        {
+            "label": "Git: Add All Changes",
+            "type": "shell",
+            "command": "git",
+            "args": ["add", "."],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "shared"
+            },
+            "detail": "📝 Stage all changes for commit"
+        },
+        {
+            "label": "Git: Commit Changes",
+            "type": "shell",
+            "command": "git",
+            "args": ["commit", "-m", "Deploy: Updated web build"],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "detail": "💾 Commit changes with deployment message"
+        },
+        {
+            "label": "Git: Push to Master",
+            "type": "shell",
+            "command": "git",
+            "args": ["push", "origin", "master"],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "detail": "🚀 Push changes to master branch"
+        },
+        {
+            "label": "Git: Deploy to GitHub Pages",
+            "type": "shell",
+            "command": "git",
+            "args": ["subtree", "push", "--prefix", "web", "origin", "gh-pages"],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "detail": "🌐 Deploy web directory to GitHub Pages"
+        },
+        {
+            "label": "Portfolio: Complete Clean Build & Deploy",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "Flutter: Clean",
+                "Delete Web Directory",
+                "Flutter: Build Web (Release)",
+                "Copy Build to Web Directory",
+                "Delete Portfolio Build",
+                "Git: Add All Changes",
+                "Git: Commit Changes",
+                "Git: Push to Master"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": true
+            },
+            "detail": "🚀 Complete workflow: Clean → Build → Deploy → Commit → Push"
+        },
+        {
+            "label": "Portfolio: Build & Deploy to GitHub Pages",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "Flutter: Clean",
+                "Delete Web Directory",
+                "Flutter: Build Web (Release)",
+                "Copy Build to Web Directory",
+                "Delete Portfolio Build",
+                "Git: Add All Changes",
+                "Git: Commit Changes",
+                "Git: Push to Master",
+                "Git: Deploy to GitHub Pages"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": true
+            },
+            "detail": "🌐 Complete workflow + GitHub Pages deployment"
         }
     ]
 } 
