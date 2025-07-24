@@ -1,0 +1,39 @@
+{
+    "dart.flutterSdkPath": null,
+    "dart.lineLength": 80,
+    "dart.formatOnSave": true,
+    "dart.analysisExcludedFolders": [
+        "portfolio/build/**",
+        "portfolio/.dart_tool/**",
+        "web/**"
+    ],
+    "dart.debugExternalPackageLibraries": false,
+    "dart.debugSdkLibraries": false,
+    "dart.previewFlutterUiGuides": true,
+    "dart.previewFlutterUiGuidesCustomTracking": true,
+    "files.exclude": {
+        "**/.dart_tool": true,
+        "**/build": true,
+        "web/**": false
+    },
+    "files.watcherExclude": {
+        "**/.dart_tool/**": true,
+        "**/build/**": true
+    },
+    "editor.rulers": [80],
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll": "explicit",
+        "source.organizeImports": "explicit"
+    },
+    "files.associations": {
+        "*.dart": "dart"
+    },
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.patterns": {
+        "pubspec.yaml": "pubspec.lock",
+        "*.dart": "${capture}.freezed.dart, ${capture}.g.dart, ${capture}.gr.dart"
+    },
+    "dart.openDevTools": "flutter",
+    "dart.devToolsTheme": "dark"
+} 

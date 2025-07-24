@@ -1,0 +1,173 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Flutter: Build Web (Release)",
+            "type": "shell",
+            "command": "flutter",
+            "args": ["build", "web", "--release"],
+            "options": {
+                "cwd": "${workspaceFolder}/portfolio"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": [],
+            "detail": "🚀 Build Flutter web app for production"
+        },
+        {
+            "label": "Clean Web Directory",
+            "type": "shell",
+            "command": "rm",
+            "args": ["-rf", "../web/*"],
+            "options": {
+                "cwd": "${workspaceFolder}/portfolio"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "shared"
+            },
+            "detail": "🧹 Clean the target web directory"
+        },
+        {
+            "label": "Copy Build to Web Directory",
+            "type": "shell",
+            "command": "cp",
+            "args": ["-r", "build/web/.", "../web/"],
+            "options": {
+                "cwd": "${workspaceFolder}/portfolio"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "shared"
+            },
+            "detail": "📂 Copy built files to web directory"
+        },
+        {
+            "label": "Portfolio: Full Build & Deploy",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "Flutter: Build Web (Release)",
+                "Clean Web Directory", 
+                "Copy Build to Web Directory"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": true
+            },
+            "detail": "🚀 Complete build pipeline: Build → Clean → Copy"
+        },
+        {
+            "label": "Serve Web Locally",
+            "type": "shell",
+            "command": "python3",
+            "args": ["-m", "http.server", "8000"],
+            "options": {
+                "cwd": "${workspaceFolder}/web"
+            },
+            "group": "test",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "dedicated",
+                "showReuseMessage": false
+            },
+            "isBackground": true,
+            "problemMatcher": [],
+            "detail": "🌐 Serve the web directory locally on port 8000"
+        },
+        {
+            "label": "Flutter: Get Dependencies",
+            "type": "shell",
+            "command": "flutter",
+            "args": ["pub", "get"],
+            "options": {
+                "cwd": "${workspaceFolder}/portfolio"
+            },
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "detail": "📦 Get Flutter dependencies"
+        },
+        {
+            "label": "Flutter: Analyze",
+            "type": "shell",
+            "command": "flutter",
+            "args": ["analyze"],
+            "options": {
+                "cwd": "${workspaceFolder}/portfolio"
+            },
+            "group": "test",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": [
+                "$dart-analyze"
+            ],
+            "detail": "🔍 Run Flutter static analysis"
+        },
+        {
+            "label": "Flutter: Test",
+            "type": "shell",
+            "command": "flutter",
+            "args": ["test"],
+            "options": {
+                "cwd": "${workspaceFolder}/portfolio"
+            },
+            "group": "test",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": [],
+            "detail": "🧪 Run Flutter tests"
+        },
+        {
+            "label": "Flutter: Run Dev Server",
+            "type": "shell",
+            "command": "flutter",
+            "args": ["run", "-d", "web-server", "--web-port", "3000"],
+            "options": {
+                "cwd": "${workspaceFolder}/portfolio"
+            },
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated"
+            },
+            "isBackground": true,
+            "problemMatcher": [],
+            "detail": "🛠️ Start Flutter development server on port 3000"
+        }
+    ]
+} 
