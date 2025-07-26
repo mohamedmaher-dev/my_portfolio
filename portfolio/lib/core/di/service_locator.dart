@@ -11,12 +11,7 @@ final GetIt sl = GetIt.instance;
 
 Future<void> setupServiceLocator() async {
   try {
-    // Clear any existing registrations to avoid conflicts
-    if (sl.isRegistered<NavigationService>()) {
-      sl.reset();
-    }
-
-    // Services
+    // Simple registration without complex error handling
     sl.registerLazySingleton<NavigationService>(() => NavigationService());
     sl.registerLazySingleton<PortfolioService>(() => PortfolioService());
 
@@ -31,13 +26,6 @@ Future<void> setupServiceLocator() async {
     debugPrint('✅ Service locator setup completed successfully');
   } catch (e) {
     debugPrint('❌ Error in service locator setup: $e');
-    // Ensure basic services are available even if setup fails
-    if (!sl.isRegistered<NavigationService>()) {
-      sl.registerLazySingleton<NavigationService>(() => NavigationService());
-    }
-    if (!sl.isRegistered<PortfolioService>()) {
-      sl.registerLazySingleton<PortfolioService>(() => PortfolioService());
-    }
     rethrow;
   }
 }

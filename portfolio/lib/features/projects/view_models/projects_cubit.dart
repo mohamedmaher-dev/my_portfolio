@@ -5,15 +5,13 @@ import 'projects_state.dart';
 class ProjectsCubit extends Cubit<ProjectsState> {
   final PortfolioService _portfolioService;
 
-  ProjectsCubit(this._portfolioService) : super(const ProjectsState());
+  ProjectsCubit(this._portfolioService)
+    : super(const ProjectsState(isLoading: true));
 
   void loadProjects() {
-    emit(state.copyWith(isLoading: true));
-
     try {
       final projects = _portfolioService.getProjects();
-
-      emit(state.copyWith(isLoading: false, projects: projects));
+      emit(state.copyWith(isLoading: false, projects: projects, error: null));
     } catch (e) {
       emit(
         state.copyWith(isLoading: false, error: 'Failed to load projects: $e'),

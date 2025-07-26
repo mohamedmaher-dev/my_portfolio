@@ -5,11 +5,9 @@ import 'about_state.dart';
 class AboutCubit extends Cubit<AboutState> {
   final PortfolioService _portfolioService;
 
-  AboutCubit(this._portfolioService) : super(const AboutState());
+  AboutCubit(this._portfolioService) : super(const AboutState(isLoading: true));
 
   void loadAboutData() {
-    emit(state.copyWith(isLoading: true));
-
     try {
       final skills = _portfolioService.getSkills();
       final experience = _portfolioService.getExperience();
@@ -19,6 +17,7 @@ class AboutCubit extends Cubit<AboutState> {
           isLoading: false,
           skills: skills,
           experience: experience,
+          error: null,
         ),
       );
     } catch (e) {
