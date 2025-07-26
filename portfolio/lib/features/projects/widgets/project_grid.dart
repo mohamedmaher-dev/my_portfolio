@@ -150,21 +150,23 @@ class _ProjectCardState extends State<_ProjectCard>
                 borderRadius: BorderRadius.circular(16),
                 border: Border.all(
                   color: _isHovered
-                      ? theme.colorScheme.primary.withOpacity(0.5)
-                      : theme.colorScheme.outline.withOpacity(0.2),
+                      ? theme.colorScheme.primary.withValues(alpha: 0.5)
+                      : theme.colorScheme.outline.withValues(alpha: 0.2),
                   width: _isHovered ? 2 : 1,
                 ),
                 boxShadow: _isHovered
                     ? [
                         BoxShadow(
-                          color: theme.colorScheme.primary.withOpacity(0.2),
+                          color: theme.colorScheme.primary.withValues(
+                            alpha: 0.2,
+                          ),
                           blurRadius: 20,
                           offset: const Offset(0, 8),
                         ),
                       ]
                     : [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.1),
+                          color: Colors.black.withValues(alpha: 0.1),
                           blurRadius: 8,
                           offset: const Offset(0, 4),
                         ),
@@ -187,8 +189,12 @@ class _ProjectCardState extends State<_ProjectCard>
                                 begin: Alignment.topLeft,
                                 end: Alignment.bottomRight,
                                 colors: [
-                                  theme.colorScheme.primary.withOpacity(0.8),
-                                  theme.colorScheme.secondary.withOpacity(0.6),
+                                  theme.colorScheme.primary.withValues(
+                                    alpha: 0.8,
+                                  ),
+                                  theme.colorScheme.secondary.withValues(
+                                    alpha: 0.6,
+                                  ),
                                 ],
                               ),
                             ),
@@ -218,7 +224,9 @@ class _ProjectCardState extends State<_ProjectCard>
                                   borderRadius: BorderRadius.circular(6),
                                   boxShadow: [
                                     BoxShadow(
-                                      color: Colors.amber.withOpacity(0.4),
+                                      color: Colors.amber.withValues(
+                                        alpha: 0.4,
+                                      ),
                                       blurRadius: 8,
                                       offset: const Offset(0, 2),
                                     ),
@@ -256,13 +264,13 @@ class _ProjectCardState extends State<_ProjectCard>
                                 vertical: 4,
                               ),
                               decoration: BoxDecoration(
-                                color: theme.colorScheme.surface.withOpacity(
-                                  0.9,
+                                color: theme.colorScheme.surface.withValues(
+                                  alpha: 0.9,
                                 ),
                                 borderRadius: BorderRadius.circular(6),
                                 border: Border.all(
-                                  color: theme.colorScheme.outline.withOpacity(
-                                    0.3,
+                                  color: theme.colorScheme.outline.withValues(
+                                    alpha: 0.3,
                                   ),
                                 ),
                               ),
@@ -317,8 +325,9 @@ class _ProjectCardState extends State<_ProjectCard>
                               child: Text(
                                 widget.project.description,
                                 style: theme.textTheme.bodySmall?.copyWith(
-                                  color: theme.colorScheme.onSurface
-                                      .withOpacity(0.8),
+                                  color: theme.colorScheme.onSurface.withValues(
+                                    alpha: 0.8,
+                                  ),
                                   height: 1.4,
                                   fontSize:
                                       MediaQuery.of(context).size.width > 1200
@@ -349,11 +358,11 @@ class _ProjectCardState extends State<_ProjectCard>
                                       ),
                                       decoration: BoxDecoration(
                                         color: theme.colorScheme.primary
-                                            .withOpacity(0.1),
+                                            .withValues(alpha: 0.1),
                                         borderRadius: BorderRadius.circular(4),
                                         border: Border.all(
                                           color: theme.colorScheme.primary
-                                              .withOpacity(0.3),
+                                              .withValues(alpha: 0.3),
                                           width: 0.5,
                                         ),
                                       ),
@@ -386,16 +395,40 @@ class _ProjectCardState extends State<_ProjectCard>
                                     ),
                                   ),
                                 if (widget.project.githubUrl != null &&
-                                    widget.project.liveUrl != null)
+                                    (widget.project.googlePlayUrl != null ||
+                                        widget.project.appStoreUrl != null))
                                   const SizedBox(width: 8),
-                                if (widget.project.liveUrl != null)
+                                if (widget.project.googlePlayUrl != null)
                                   Expanded(
                                     child: _ActionButton(
-                                      icon: FontAwesomeIcons.externalLinkAlt,
-                                      label: 'Live',
-                                      onPressed: () =>
-                                          _launchUrl(widget.project.liveUrl!),
+                                      icon: FontAwesomeIcons.googlePlay,
+                                      label: 'Play',
+                                      onPressed: () => _launchUrl(
+                                        widget.project.googlePlayUrl!,
+                                      ),
                                       isPrimary: true,
+                                      customBackgroundColor: const Color(
+                                        0xFF01875F,
+                                      ),
+                                      customTextColor: Colors.white,
+                                    ),
+                                  ),
+                                if (widget.project.googlePlayUrl != null &&
+                                    widget.project.appStoreUrl != null)
+                                  const SizedBox(width: 8),
+                                if (widget.project.appStoreUrl != null)
+                                  Expanded(
+                                    child: _ActionButton(
+                                      icon: FontAwesomeIcons.appStoreIos,
+                                      label: 'App Store',
+                                      onPressed: () => _launchUrl(
+                                        widget.project.appStoreUrl!,
+                                      ),
+                                      isPrimary: true,
+                                      customBackgroundColor: const Color(
+                                        0xFF007AFF,
+                                      ),
+                                      customTextColor: Colors.white,
                                     ),
                                   ),
                               ],
@@ -422,8 +455,8 @@ class _ProjectCardState extends State<_ProjectCard>
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            theme.colorScheme.primary.withOpacity(0.3),
-            theme.colorScheme.secondary.withOpacity(0.2),
+            theme.colorScheme.primary.withValues(alpha: 0.3),
+            theme.colorScheme.secondary.withValues(alpha: 0.2),
           ],
         ),
       ),
@@ -434,13 +467,13 @@ class _ProjectCardState extends State<_ProjectCard>
             Icon(
               Icons.code,
               size: 32,
-              color: theme.colorScheme.onSurface.withOpacity(0.6),
+              color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
             ),
             const SizedBox(height: 8),
             Text(
               widget.project.title,
               style: theme.textTheme.bodySmall?.copyWith(
-                color: theme.colorScheme.onSurface.withOpacity(0.8),
+                color: theme.colorScheme.onSurface.withValues(alpha: 0.8),
                 fontWeight: FontWeight.w500,
               ),
               textAlign: TextAlign.center,
@@ -459,12 +492,16 @@ class _ActionButton extends StatefulWidget {
   final String label;
   final VoidCallback onPressed;
   final bool isPrimary;
+  final Color? customBackgroundColor;
+  final Color? customTextColor;
 
   const _ActionButton({
     required this.icon,
     required this.label,
     required this.onPressed,
     required this.isPrimary,
+    this.customBackgroundColor,
+    this.customTextColor,
   });
 
   @override
@@ -487,18 +524,24 @@ class _ActionButtonState extends State<_ActionButton> {
           duration: const Duration(milliseconds: 150),
           padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
           decoration: BoxDecoration(
-            color: widget.isPrimary
+            color: widget.customBackgroundColor != null
                 ? (_isHovered
-                      ? theme.colorScheme.primary.withOpacity(0.9)
+                      ? widget.customBackgroundColor!.withValues(alpha: 0.9)
+                      : widget.customBackgroundColor!)
+                : widget.isPrimary
+                ? (_isHovered
+                      ? theme.colorScheme.primary.withValues(alpha: 0.9)
                       : theme.colorScheme.primary)
                 : (_isHovered
-                      ? theme.colorScheme.outline.withOpacity(0.1)
+                      ? theme.colorScheme.outline.withValues(alpha: 0.1)
                       : Colors.transparent),
             borderRadius: BorderRadius.circular(6),
             border: Border.all(
-              color: widget.isPrimary
+              color: widget.customBackgroundColor != null
+                  ? widget.customBackgroundColor!
+                  : widget.isPrimary
                   ? theme.colorScheme.primary
-                  : theme.colorScheme.outline.withOpacity(0.5),
+                  : theme.colorScheme.outline.withValues(alpha: 0.5),
               width: 1,
             ),
           ),
@@ -509,19 +552,27 @@ class _ActionButtonState extends State<_ActionButton> {
               FaIcon(
                 widget.icon,
                 size: 12,
-                color: widget.isPrimary
-                    ? Colors.white
-                    : theme.colorScheme.onSurface,
+                color:
+                    widget.customTextColor ??
+                    (widget.isPrimary
+                        ? Colors.white
+                        : theme.colorScheme.onSurface),
               ),
-              const SizedBox(width: 6),
-              Text(
-                widget.label,
-                style: theme.textTheme.bodySmall?.copyWith(
-                  fontSize: 11,
-                  fontWeight: FontWeight.w600,
-                  color: widget.isPrimary
-                      ? Colors.white
-                      : theme.colorScheme.onSurface,
+              const SizedBox(width: 4),
+              Flexible(
+                child: Text(
+                  widget.label,
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    fontSize: 10,
+                    fontWeight: FontWeight.w600,
+                    color:
+                        widget.customTextColor ??
+                        (widget.isPrimary
+                            ? Colors.white
+                            : theme.colorScheme.onSurface),
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
                 ),
               ),
             ],

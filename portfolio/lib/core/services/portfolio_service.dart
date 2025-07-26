@@ -102,10 +102,11 @@ class PortfolioService {
         description:
             'A feature-rich e-commerce mobile application built with Flutter. Includes user authentication, product catalog, shopping cart, payment integration, and order tracking.',
         technologies: ['Flutter', 'Dart', 'Firebase', 'Stripe API', 'Provider'],
-        imageUrl: 'assets/images/ecommerce_app.png',
-        githubUrl: 'https://github.com/username/flutter-ecommerce',
-        liveUrl:
+        imageUrl: 'https://via.placeholder.com/300x200?text=E-commerce+App',
+        githubUrl: 'https://github.com/mohamedmaher-dev/flutter-ecommerce',
+        googlePlayUrl:
             'https://play.google.com/store/apps/details?id=com.example.ecommerce',
+        appStoreUrl: 'https://apps.apple.com/app/ecommerce-app/id123456789',
         category: 'E-commerce',
         featured: true,
       ),
@@ -121,10 +122,11 @@ class PortfolioService {
           'Firebase',
           'Local Notifications',
         ],
-        imageUrl: 'assets/images/task_manager.png',
-        githubUrl: 'https://github.com/username/flutter-task-manager',
-        liveUrl:
+        imageUrl: 'https://via.placeholder.com/300x200?text=Task+Manager',
+        githubUrl: 'https://github.com/mohamedmaher-dev/flutter-task-manager',
+        googlePlayUrl:
             'https://play.google.com/store/apps/details?id=com.example.taskmanager',
+        appStoreUrl: 'https://apps.apple.com/app/task-manager/id987654321',
         category: 'Productivity',
         featured: true,
       ),
@@ -139,9 +141,10 @@ class PortfolioService {
           'Geolocator',
           'Animations',
         ],
-        imageUrl: 'assets/images/weather_app.png',
-        githubUrl: 'https://github.com/username/flutter-weather',
-        liveUrl: null,
+        imageUrl: 'https://via.placeholder.com/300x200?text=Weather+App',
+        githubUrl: 'https://github.com/mohamedmaher-dev/flutter-weather',
+        googlePlayUrl: null,
+        appStoreUrl: null,
         category: 'Utility',
         featured: false,
       ),
@@ -156,10 +159,11 @@ class PortfolioService {
           'Cloud Firestore',
           'Firebase Auth',
         ],
-        imageUrl: 'assets/images/chat_app.png',
-        githubUrl: 'https://github.com/username/flutter-chat',
-        liveUrl:
+        imageUrl: 'https://via.placeholder.com/300x200?text=Chat+App',
+        githubUrl: 'https://github.com/mohamedmaher-dev/flutter-chat',
+        googlePlayUrl:
             'https://play.google.com/store/apps/details?id=com.example.chat',
+        appStoreUrl: null,
         category: 'Social',
         featured: true,
       ),
@@ -174,10 +178,11 @@ class PortfolioService {
           'Room Database',
           'Health Connect API',
         ],
-        imageUrl: 'assets/images/fitness_app.png',
-        githubUrl: 'https://github.com/username/kotlin-fitness-tracker',
-        liveUrl:
+        imageUrl: 'https://via.placeholder.com/300x200?text=Fitness+Tracker',
+        githubUrl: 'https://github.com/mohamedmaher-dev/kotlin-fitness-tracker',
+        googlePlayUrl:
             'https://play.google.com/store/apps/details?id=com.example.fitness',
+        appStoreUrl: null,
         category: 'Health',
         featured: false,
       ),
@@ -187,9 +192,10 @@ class PortfolioService {
         description:
             'Discover and save your favorite recipes with this Flutter app. Features ingredient-based search, meal planning, and offline recipe storage.',
         technologies: ['Flutter', 'REST API', 'SQLite', 'Provider', 'Camera'],
-        imageUrl: 'assets/images/recipe_app.png',
-        githubUrl: 'https://github.com/username/flutter-recipes',
-        liveUrl: null,
+        imageUrl: 'https://via.placeholder.com/300x200?text=Recipe+App',
+        githubUrl: 'https://github.com/mohamedmaher-dev/flutter-recipes',
+        googlePlayUrl: null,
+        appStoreUrl: null,
         category: 'Lifestyle',
         featured: false,
       ),
@@ -273,10 +279,9 @@ class PortfolioService {
       'email': 'mohamedmaher.developer@gmail.com',
       'phone': '+201065027589',
       'location': 'Egypt',
-      'linkedin': 'https://linkedin.com/in/yourprofile',
-      'github': 'https://github.com/yourusername',
-      'playstore':
-          'https://play.google.com/store/apps/developer?id=YourDeveloperName',
+      'linkedin': 'https://linkedin.com/in/mohamedmaher-dev',
+      'github': 'https://github.com/mohamedmaher-dev',
+      'facebook': 'https://facebook.com/mohamedmaher.dev',
     };
   }
 }

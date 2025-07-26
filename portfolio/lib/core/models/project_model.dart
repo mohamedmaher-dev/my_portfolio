@@ -5,7 +5,8 @@ class ProjectModel {
   final List<String> technologies;
   final String imageUrl;
   final String? githubUrl;
-  final String? liveUrl;
+  final String? googlePlayUrl;
+  final String? appStoreUrl;
   final String category;
   final bool featured;
 
@@ -16,7 +17,8 @@ class ProjectModel {
     required this.technologies,
     required this.imageUrl,
     this.githubUrl,
-    this.liveUrl,
+    this.googlePlayUrl,
+    this.appStoreUrl,
     required this.category,
     this.featured = false,
   });
@@ -28,7 +30,8 @@ class ProjectModel {
     List<String>? technologies,
     String? imageUrl,
     String? githubUrl,
-    String? liveUrl,
+    String? googlePlayUrl,
+    String? appStoreUrl,
     String? category,
     bool? featured,
   }) {
@@ -39,7 +42,8 @@ class ProjectModel {
       technologies: technologies ?? this.technologies,
       imageUrl: imageUrl ?? this.imageUrl,
       githubUrl: githubUrl ?? this.githubUrl,
-      liveUrl: liveUrl ?? this.liveUrl,
+      googlePlayUrl: googlePlayUrl ?? this.googlePlayUrl,
+      appStoreUrl: appStoreUrl ?? this.appStoreUrl,
       category: category ?? this.category,
       featured: featured ?? this.featured,
     );
@@ -53,7 +57,8 @@ class ProjectModel {
       'technologies': technologies,
       'imageUrl': imageUrl,
       'githubUrl': githubUrl,
-      'liveUrl': liveUrl,
+      'googlePlayUrl': googlePlayUrl,
+      'appStoreUrl': appStoreUrl,
       'category': category,
       'featured': featured,
     };
@@ -67,7 +72,8 @@ class ProjectModel {
       technologies: List<String>.from(json['technologies']),
       imageUrl: json['imageUrl'],
       githubUrl: json['githubUrl'],
-      liveUrl: json['liveUrl'],
+      googlePlayUrl: json['googlePlayUrl'],
+      appStoreUrl: json['appStoreUrl'],
       category: json['category'],
       featured: json['featured'] ?? false,
     );

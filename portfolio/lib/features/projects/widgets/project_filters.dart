@@ -53,17 +53,17 @@ class _ProjectFiltersState extends State<ProjectFilters> {
           end: Alignment.bottomRight,
           colors: [
             theme.colorScheme.surface,
-            theme.colorScheme.surface.withOpacity(0.8),
+            theme.colorScheme.surface.withValues(alpha: 0.8),
           ],
         ),
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
-          color: theme.colorScheme.outline.withOpacity(0.2),
+          color: theme.colorScheme.outline.withValues(alpha: 0.2),
           width: 1,
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black.withValues(alpha: 0.1),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -80,10 +80,10 @@ class _ProjectFiltersState extends State<ProjectFilters> {
                 Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: theme.colorScheme.primary.withOpacity(0.1),
+                    color: theme.colorScheme.primary.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(
-                      color: theme.colorScheme.primary.withOpacity(0.3),
+                      color: theme.colorScheme.primary.withValues(alpha: 0.3),
                     ),
                   ),
                   child: FaIcon(
@@ -119,14 +119,16 @@ class _ProjectFiltersState extends State<ProjectFilters> {
                     FaIcon(
                       FontAwesomeIcons.tags,
                       size: 14,
-                      color: theme.colorScheme.onSurface.withOpacity(0.7),
+                      color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                     ),
                     const SizedBox(width: 8),
                     Text(
                       'Categories',
                       style: theme.textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.w600,
-                        color: theme.colorScheme.onSurface.withOpacity(0.9),
+                        color: theme.colorScheme.onSurface.withValues(
+                          alpha: 0.9,
+                        ),
                       ),
                     ),
                   ],
@@ -158,14 +160,14 @@ class _ProjectFiltersState extends State<ProjectFilters> {
                 FaIcon(
                   FontAwesomeIcons.star,
                   size: 14,
-                  color: theme.colorScheme.onSurface.withOpacity(0.7),
+                  color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                 ),
                 const SizedBox(width: 8),
                 Text(
                   'Special Filters',
                   style: theme.textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.w600,
-                    color: theme.colorScheme.onSurface.withOpacity(0.9),
+                    color: theme.colorScheme.onSurface.withValues(alpha: 0.9),
                   ),
                 ),
                 const Spacer(),
@@ -185,17 +187,17 @@ class _ProjectFiltersState extends State<ProjectFilters> {
     return Container(
       decoration: BoxDecoration(
         color: theme.colorScheme.surface,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(20),
         border: Border.all(
           color: _isSearchFocused
-              ? theme.colorScheme.primary.withOpacity(0.5)
-              : theme.colorScheme.outline.withOpacity(0.3),
+              ? theme.colorScheme.primary.withValues(alpha: 0.5)
+              : theme.colorScheme.outline.withValues(alpha: 0.3),
           width: _isSearchFocused ? 2 : 1,
         ),
         boxShadow: _isSearchFocused
             ? [
                 BoxShadow(
-                  color: theme.colorScheme.primary.withOpacity(0.1),
+                  color: theme.colorScheme.primary.withValues(alpha: 0.1),
                   blurRadius: 8,
                   offset: const Offset(0, 2),
                 ),
@@ -213,24 +215,25 @@ class _ProjectFiltersState extends State<ProjectFilters> {
         decoration: InputDecoration(
           hintText: 'Search projects by name, description, or technology...',
           hintStyle: theme.textTheme.bodyLarge?.copyWith(
-            color: theme.colorScheme.onSurface.withOpacity(0.5),
+            color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
           ),
+
           prefixIcon: Padding(
             padding: const EdgeInsets.all(12),
             child: FaIcon(
-              FontAwesomeIcons.search,
+              FontAwesomeIcons.magnifyingGlass,
               size: 16,
               color: _isSearchFocused
                   ? theme.colorScheme.primary
-                  : theme.colorScheme.onSurface.withOpacity(0.5),
+                  : theme.colorScheme.onSurface.withValues(alpha: 0.5),
             ),
           ),
           suffixIcon: widget.searchQuery.isNotEmpty
               ? IconButton(
                   icon: FaIcon(
-                    FontAwesomeIcons.times,
+                    FontAwesomeIcons.xmark,
                     size: 14,
-                    color: theme.colorScheme.onSurface.withOpacity(0.5),
+                    color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
                   ),
                   onPressed: () {
                     _searchController.clear();
@@ -291,15 +294,15 @@ class _ModernCategoryChipState extends State<_ModernCategoryChip> {
             color: widget.isSelected
                 ? null
                 : (_isHovered
-                      ? theme.colorScheme.primary.withOpacity(0.1)
+                      ? theme.colorScheme.primary.withValues(alpha: 0.1)
                       : theme.colorScheme.surface),
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
               color: widget.isSelected
                   ? Colors.transparent
                   : (_isHovered
-                        ? theme.colorScheme.primary.withOpacity(0.5)
-                        : theme.colorScheme.outline.withOpacity(0.3)),
+                        ? theme.colorScheme.primary.withValues(alpha: 0.5)
+                        : theme.colorScheme.outline.withValues(alpha: 0.3)),
               width: 1.5,
             ),
             boxShadow: widget.isSelected || _isHovered
@@ -309,7 +312,7 @@ class _ModernCategoryChipState extends State<_ModernCategoryChip> {
                           (widget.isSelected
                                   ? theme.colorScheme.primary
                                   : theme.colorScheme.outline)
-                              .withOpacity(0.2),
+                              .withValues(alpha: 0.2),
                       blurRadius: 6,
                       offset: const Offset(0, 2),
                     ),
@@ -351,11 +354,11 @@ class _ModernCategoryChipState extends State<_ModernCategoryChip> {
   IconData _getCategoryIcon(String category) {
     switch (category.toLowerCase()) {
       case 'all':
-        return FontAwesomeIcons.th;
+        return FontAwesomeIcons.tableCells;
       case 'e-commerce':
-        return FontAwesomeIcons.shoppingCart;
+        return FontAwesomeIcons.cartShopping;
       case 'productivity':
-        return FontAwesomeIcons.tasks;
+        return FontAwesomeIcons.listCheck;
       case 'utility':
         return FontAwesomeIcons.wrench;
       case 'social':
@@ -403,15 +406,15 @@ class _ModernFeaturedToggleState extends State<_ModernFeaturedToggle> {
             color: widget.isSelected
                 ? null
                 : (_isHovered
-                      ? Colors.amber.withOpacity(0.1)
+                      ? Colors.amber.withValues(alpha: 0.1)
                       : theme.colorScheme.surface),
             borderRadius: BorderRadius.circular(25),
             border: Border.all(
               color: widget.isSelected
                   ? Colors.transparent
                   : (_isHovered
-                        ? Colors.amber.withOpacity(0.5)
-                        : theme.colorScheme.outline.withOpacity(0.3)),
+                        ? Colors.amber.withValues(alpha: 0.5)
+                        : theme.colorScheme.outline.withValues(alpha: 0.3)),
               width: 1.5,
             ),
             boxShadow: widget.isSelected || _isHovered
@@ -421,7 +424,7 @@ class _ModernFeaturedToggleState extends State<_ModernFeaturedToggle> {
                           (widget.isSelected
                                   ? Colors.amber
                                   : theme.colorScheme.outline)
-                              .withOpacity(0.3),
+                              .withValues(alpha: 0.3),
                       blurRadius: 8,
                       offset: const Offset(0, 2),
                     ),
@@ -438,7 +441,7 @@ class _ModernFeaturedToggleState extends State<_ModernFeaturedToggle> {
                     ? Colors.white
                     : (_isHovered
                           ? Colors.amber
-                          : theme.colorScheme.onSurface.withOpacity(0.7)),
+                          : theme.colorScheme.onSurface.withValues(alpha: 0.7)),
               ),
               const SizedBox(width: 8),
               Text(

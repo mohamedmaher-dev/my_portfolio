@@ -15,7 +15,6 @@ class _ContactFormState extends State<ContactForm>
     with TickerProviderStateMixin {
   late AnimationController _formAnimationController;
   late Animation<double> _fadeAnimation;
-  late Animation<Offset> _slideAnimation;
 
   final Map<String, bool> _fieldFocusStates = {
     'name': false,
@@ -35,14 +34,6 @@ class _ContactFormState extends State<ContactForm>
     _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(parent: _formAnimationController, curve: Curves.easeOut),
     );
-
-    _slideAnimation =
-        Tween<Offset>(begin: const Offset(0, 0.3), end: Offset.zero).animate(
-          CurvedAnimation(
-            parent: _formAnimationController,
-            curve: Curves.easeOutCubic,
-          ),
-        );
 
     _formAnimationController.forward();
   }
@@ -65,74 +56,66 @@ class _ContactFormState extends State<ContactForm>
 
     return BlocBuilder<ContactCubit, ContactState>(
       builder: (context, state) {
-        return AnimatedBuilder(
-          animation: _formAnimationController,
-          builder: (context, child) {
-            return FadeTransition(
-              opacity: _fadeAnimation,
-              child: SlideTransition(
-                position: _slideAnimation,
-                child: Container(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        theme.colorScheme.surface,
-                        theme.colorScheme.surface.withOpacity(0.9),
-                      ],
-                    ),
-                    borderRadius: BorderRadius.circular(24),
-                    border: Border.all(
-                      color: theme.colorScheme.outline.withOpacity(0.1),
-                      width: 1,
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.08),
-                        blurRadius: 20,
-                        offset: const Offset(0, 8),
-                        spreadRadius: 2,
-                      ),
-                    ],
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(40),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Header section
-                        _buildFormHeader(theme),
-
-                        const SizedBox(height: 40),
-
-                        // Form fields
-                        _buildNameField(theme, state),
-                        const SizedBox(height: 24),
-
-                        _buildEmailField(theme, state),
-                        const SizedBox(height: 24),
-
-                        _buildSubjectField(theme, state),
-                        const SizedBox(height: 24),
-
-                        _buildMessageField(theme, state),
-                        const SizedBox(height: 40),
-
-                        // Submit button
-                        _buildSubmitButton(theme, state),
-
-                        const SizedBox(height: 20),
-
-                        // Trust indicators
-                        _buildTrustIndicators(theme),
-                      ],
-                    ),
-                  ),
-                ),
+        return FadeTransition(
+          opacity: _fadeAnimation,
+          child: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  theme.colorScheme.surface,
+                  theme.colorScheme.surface.withValues(alpha: 0.9),
+                ],
               ),
-            );
-          },
+              borderRadius: BorderRadius.circular(24),
+              border: Border.all(
+                color: theme.colorScheme.outline.withValues(alpha: 0.1),
+                width: 1,
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.08),
+                  blurRadius: 20,
+                  offset: const Offset(0, 8),
+                  spreadRadius: 2,
+                ),
+              ],
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(40),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Header section
+                  _buildFormHeader(theme),
+
+                  const SizedBox(height: 40),
+
+                  // Form fields
+                  _buildNameField(theme, state),
+                  const SizedBox(height: 24),
+
+                  _buildEmailField(theme, state),
+                  const SizedBox(height: 24),
+
+                  _buildSubjectField(theme, state),
+                  const SizedBox(height: 24),
+
+                  _buildMessageField(theme, state),
+                  const SizedBox(height: 40),
+
+                  // Submit button
+                  _buildSubmitButton(theme, state),
+
+                  const SizedBox(height: 20),
+
+                  // Trust indicators
+                  _buildTrustIndicators(theme),
+                ],
+              ),
+            ),
+          ),
         );
       },
     );
@@ -156,7 +139,7 @@ class _ContactFormState extends State<ContactForm>
                 borderRadius: BorderRadius.circular(16),
                 boxShadow: [
                   BoxShadow(
-                    color: theme.colorScheme.primary.withOpacity(0.3),
+                    color: theme.colorScheme.primary.withValues(alpha: 0.3),
                     blurRadius: 12,
                     offset: const Offset(0, 6),
                   ),
@@ -184,7 +167,7 @@ class _ContactFormState extends State<ContactForm>
                   Text(
                     'I\'d love to hear about your project ideas',
                     style: theme.textTheme.bodyLarge?.copyWith(
-                      color: theme.colorScheme.onSurface.withOpacity(0.7),
+                      color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                     ),
                   ),
                 ],
@@ -199,10 +182,10 @@ class _ContactFormState extends State<ContactForm>
         Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            color: theme.colorScheme.primary.withOpacity(0.05),
+            color: theme.colorScheme.primary.withValues(alpha: 0.05),
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
-              color: theme.colorScheme.primary.withOpacity(0.1),
+              color: theme.colorScheme.primary.withValues(alpha: 0.1),
             ),
           ),
           child: Row(
@@ -217,7 +200,7 @@ class _ContactFormState extends State<ContactForm>
                 child: Text(
                   'All fields are required. I typically respond within 24 hours.',
                   style: theme.textTheme.bodySmall?.copyWith(
-                    color: theme.colorScheme.onSurface.withOpacity(0.7),
+                    color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -308,12 +291,12 @@ class _ContactFormState extends State<ContactForm>
                 : null,
             color: state.isFormValid
                 ? null
-                : theme.colorScheme.outline.withOpacity(0.2),
+                : theme.colorScheme.outline.withValues(alpha: 0.2),
             borderRadius: BorderRadius.circular(16),
             boxShadow: state.isFormValid && !state.isSubmitting
                 ? [
                     BoxShadow(
-                      color: theme.colorScheme.primary.withOpacity(0.4),
+                      color: theme.colorScheme.primary.withValues(alpha: 0.4),
                       blurRadius: 16,
                       offset: const Offset(0, 8),
                       spreadRadius: 0,
@@ -360,7 +343,9 @@ class _ContactFormState extends State<ContactForm>
                             FontAwesomeIcons.rocket,
                             color: state.isFormValid
                                 ? Colors.white
-                                : theme.colorScheme.onSurface.withOpacity(0.4),
+                                : theme.colorScheme.onSurface.withValues(
+                                    alpha: 0.4,
+                                  ),
                             size: 18,
                           ),
                           const SizedBox(width: 16),
@@ -369,8 +354,8 @@ class _ContactFormState extends State<ContactForm>
                             style: theme.textTheme.titleLarge?.copyWith(
                               color: state.isFormValid
                                   ? Colors.white
-                                  : theme.colorScheme.onSurface.withOpacity(
-                                      0.4,
+                                  : theme.colorScheme.onSurface.withValues(
+                                      alpha: 0.4,
                                     ),
                               fontWeight: FontWeight.w600,
                             ),
@@ -389,9 +374,11 @@ class _ContactFormState extends State<ContactForm>
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: theme.colorScheme.surface.withOpacity(0.5),
+        color: theme.colorScheme.surface.withValues(alpha: 0.5),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: theme.colorScheme.outline.withOpacity(0.1)),
+        border: Border.all(
+          color: theme.colorScheme.outline.withValues(alpha: 0.1),
+        ),
       ),
       child: Row(
         children: [
@@ -432,7 +419,7 @@ class _ContactFormState extends State<ContactForm>
           Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: theme.colorScheme.primary.withOpacity(0.1),
+              color: theme.colorScheme.primary.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(8),
             ),
             child: FaIcon(icon, color: theme.colorScheme.primary, size: 16),
@@ -448,7 +435,7 @@ class _ContactFormState extends State<ContactForm>
           Text(
             subtitle,
             style: theme.textTheme.bodySmall?.copyWith(
-              color: theme.colorScheme.onSurface.withOpacity(0.6),
+              color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
               fontSize: 11,
             ),
             textAlign: TextAlign.center,
@@ -497,7 +484,7 @@ class _ModernTextField extends StatelessWidget {
               size: 14,
               color: isFocused
                   ? theme.colorScheme.primary
-                  : theme.colorScheme.onSurface.withOpacity(0.7),
+                  : theme.colorScheme.onSurface.withValues(alpha: 0.7),
             ),
             const SizedBox(width: 8),
             Text(
@@ -506,7 +493,7 @@ class _ModernTextField extends StatelessWidget {
                 fontWeight: FontWeight.w600,
                 color: isFocused
                     ? theme.colorScheme.primary
-                    : theme.colorScheme.onSurface.withOpacity(0.9),
+                    : theme.colorScheme.onSurface.withValues(alpha: 0.9),
               ),
             ),
           ],
@@ -522,14 +509,14 @@ class _ModernTextField extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
               color: isFocused
-                  ? theme.colorScheme.primary.withOpacity(0.5)
-                  : theme.colorScheme.outline.withOpacity(0.3),
+                  ? theme.colorScheme.primary.withValues(alpha: 0.5)
+                  : theme.colorScheme.outline.withValues(alpha: 0.3),
               width: isFocused ? 2 : 1,
             ),
             boxShadow: isFocused
                 ? [
                     BoxShadow(
-                      color: theme.colorScheme.primary.withOpacity(0.1),
+                      color: theme.colorScheme.primary.withValues(alpha: 0.1),
                       blurRadius: 8,
                       offset: const Offset(0, 2),
                     ),
@@ -548,7 +535,7 @@ class _ModernTextField extends StatelessWidget {
               decoration: InputDecoration(
                 hintText: hintText,
                 hintStyle: theme.textTheme.bodyLarge?.copyWith(
-                  color: theme.colorScheme.onSurface.withOpacity(0.5),
+                  color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
                 ),
                 border: InputBorder.none,
                 contentPadding: const EdgeInsets.all(16),

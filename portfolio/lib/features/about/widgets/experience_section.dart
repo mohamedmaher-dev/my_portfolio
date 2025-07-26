@@ -106,7 +106,9 @@ class _ExperienceTimelineItemState extends State<_ExperienceTimelineItem> {
                   width: 44,
                   height: 44,
                   decoration: BoxDecoration(
-                    color: experienceColor.withOpacity(_isHovered ? 0.2 : 0.1),
+                    color: experienceColor.withValues(
+                      alpha: _isHovered ? 0.2 : 0.1,
+                    ),
                     borderRadius: BorderRadius.circular(22),
                     border: Border.all(
                       color: experienceColor,
@@ -115,7 +117,7 @@ class _ExperienceTimelineItemState extends State<_ExperienceTimelineItem> {
                     boxShadow: _isHovered
                         ? [
                             BoxShadow(
-                              color: experienceColor.withOpacity(0.3),
+                              color: experienceColor.withValues(alpha: 0.3),
                               blurRadius: 8,
                               offset: const Offset(0, 2),
                             ),
@@ -142,8 +144,8 @@ class _ExperienceTimelineItemState extends State<_ExperienceTimelineItem> {
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                         colors: [
-                          experienceColor.withOpacity(0.8),
-                          _getNextExperienceColor().withOpacity(0.3),
+                          experienceColor.withValues(alpha: 0.8),
+                          _getNextExperienceColor().withValues(alpha: 0.3),
                         ],
                       ),
                     ),
@@ -165,21 +167,21 @@ class _ExperienceTimelineItemState extends State<_ExperienceTimelineItem> {
                   borderRadius: BorderRadius.circular(16),
                   border: Border.all(
                     color: _isHovered
-                        ? experienceColor.withOpacity(0.5)
-                        : theme.colorScheme.outline.withOpacity(0.2),
+                        ? experienceColor.withValues(alpha: 0.5)
+                        : theme.colorScheme.outline.withValues(alpha: 0.2),
                     width: _isHovered ? 2 : 1,
                   ),
                   boxShadow: _isHovered
                       ? [
                           BoxShadow(
-                            color: experienceColor.withOpacity(0.15),
+                            color: experienceColor.withValues(alpha: 0.15),
                             blurRadius: 12,
                             offset: const Offset(0, 4),
                           ),
                         ]
                       : [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.05),
+                            color: Colors.black.withValues(alpha: 0.05),
                             blurRadius: 4,
                             offset: const Offset(0, 2),
                           ),
@@ -241,10 +243,10 @@ class _ExperienceTimelineItemState extends State<_ExperienceTimelineItem> {
                               vertical: 6,
                             ),
                             decoration: BoxDecoration(
-                              color: experienceColor.withOpacity(0.1),
+                              color: experienceColor.withValues(alpha: 0.1),
                               borderRadius: BorderRadius.circular(20),
                               border: Border.all(
-                                color: experienceColor.withOpacity(0.3),
+                                color: experienceColor.withValues(alpha: 0.3),
                               ),
                             ),
                             child: Row(
@@ -276,7 +278,9 @@ class _ExperienceTimelineItemState extends State<_ExperienceTimelineItem> {
                         widget.experience.description,
                         style: theme.textTheme.bodyMedium?.copyWith(
                           height: 1.6,
-                          color: theme.colorScheme.onSurface.withOpacity(0.8),
+                          color: theme.colorScheme.onSurface.withValues(
+                            alpha: 0.8,
+                          ),
                         ),
                       ),
 
@@ -293,11 +297,13 @@ class _ExperienceTimelineItemState extends State<_ExperienceTimelineItem> {
                               vertical: 6,
                             ),
                             decoration: BoxDecoration(
-                              color: theme.colorScheme.primary.withOpacity(0.1),
+                              color: theme.colorScheme.primary.withValues(
+                                alpha: 0.1,
+                              ),
                               borderRadius: BorderRadius.circular(6),
                               border: Border.all(
-                                color: theme.colorScheme.primary.withOpacity(
-                                  0.3,
+                                color: theme.colorScheme.primary.withValues(
+                                  alpha: 0.3,
                                 ),
                                 width: 0.5,
                               ),

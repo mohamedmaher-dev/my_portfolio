@@ -97,17 +97,17 @@ class AboutViewContent extends StatelessWidget {
           end: Alignment.bottomRight,
           colors: [
             theme.colorScheme.surface,
-            theme.colorScheme.surface.withOpacity(0.8),
+            theme.colorScheme.surface.withValues(alpha: 0.8),
           ],
         ),
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: theme.colorScheme.outline.withOpacity(0.2),
+          color: theme.colorScheme.outline.withValues(alpha: 0.2),
           width: 1,
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black.withValues(alpha: 0.1),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -129,10 +129,14 @@ class AboutViewContent extends StatelessWidget {
                       Container(
                         padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
-                          color: theme.colorScheme.primary.withOpacity(0.1),
+                          color: theme.colorScheme.primary.withValues(
+                            alpha: 0.1,
+                          ),
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
-                            color: theme.colorScheme.primary.withOpacity(0.3),
+                            color: theme.colorScheme.primary.withValues(
+                              alpha: 0.3,
+                            ),
                           ),
                         ),
                         child: FaIcon(
@@ -169,7 +173,7 @@ class AboutViewContent extends StatelessWidget {
                     'I\'m a dedicated freelance mobile developer specializing in Flutter and Kotlin development. With over 5 years of experience, I create beautiful, performant, and user-friendly mobile applications that help businesses achieve their goals.',
                     style: theme.textTheme.bodyLarge?.copyWith(
                       height: 1.6,
-                      color: theme.colorScheme.onSurface.withOpacity(0.8),
+                      color: theme.colorScheme.onSurface.withValues(alpha: 0.8),
                     ),
                   ),
 
@@ -179,7 +183,7 @@ class AboutViewContent extends StatelessWidget {
                     'I love working with modern technologies, following best practices, and delivering high-quality solutions that exceed client expectations. From concept to deployment, I handle the complete development lifecycle.',
                     style: theme.textTheme.bodyLarge?.copyWith(
                       height: 1.6,
-                      color: theme.colorScheme.onSurface.withOpacity(0.8),
+                      color: theme.colorScheme.onSurface.withValues(alpha: 0.8),
                     ),
                   ),
 
@@ -208,7 +212,7 @@ class AboutViewContent extends StatelessWidget {
                       _buildHighlightChip(
                         context,
                         '20+ Projects',
-                        FontAwesomeIcons.projectDiagram,
+                        FontAwesomeIcons.diagramProject,
                       ),
                     ],
                   ),
@@ -228,13 +232,13 @@ class AboutViewContent extends StatelessWidget {
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      theme.colorScheme.primary.withOpacity(0.1),
-                      theme.colorScheme.secondary.withOpacity(0.1),
+                      theme.colorScheme.primary.withValues(alpha: 0.1),
+                      theme.colorScheme.secondary.withValues(alpha: 0.1),
                     ],
                   ),
                   borderRadius: BorderRadius.circular(16),
                   border: Border.all(
-                    color: theme.colorScheme.outline.withOpacity(0.2),
+                    color: theme.colorScheme.outline.withValues(alpha: 0.2),
                   ),
                 ),
                 child: Stack(
@@ -287,7 +291,9 @@ class AboutViewContent extends StatelessWidget {
                           borderRadius: BorderRadius.circular(40),
                           boxShadow: [
                             BoxShadow(
-                              color: theme.colorScheme.primary.withOpacity(0.3),
+                              color: theme.colorScheme.primary.withValues(
+                                alpha: 0.3,
+                              ),
                               blurRadius: 20,
                               offset: const Offset(0, 8),
                             ),
@@ -322,9 +328,11 @@ class AboutViewContent extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
-        color: theme.colorScheme.primary.withOpacity(0.1),
+        color: theme.colorScheme.primary.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: theme.colorScheme.primary.withOpacity(0.3)),
+        border: Border.all(
+          color: theme.colorScheme.primary.withValues(alpha: 0.3),
+        ),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -347,9 +355,9 @@ class AboutViewContent extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
+        color: color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: color.withOpacity(0.3)),
+        border: Border.all(color: color.withValues(alpha: 0.3)),
       ),
       child: FaIcon(icon, color: color, size: 16),
     );

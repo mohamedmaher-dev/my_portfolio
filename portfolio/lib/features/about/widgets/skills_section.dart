@@ -110,13 +110,15 @@ class SkillsSection extends StatelessWidget {
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
               colors: [
-                Theme.of(context).colorScheme.primary.withOpacity(0.1),
-                Theme.of(context).colorScheme.secondary.withOpacity(0.05),
+                Theme.of(context).colorScheme.primary.withValues(alpha: 0.1),
+                Theme.of(context).colorScheme.secondary.withValues(alpha: 0.05),
               ],
             ),
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
-              color: Theme.of(context).colorScheme.outline.withOpacity(0.2),
+              color: Theme.of(
+                context,
+              ).colorScheme.outline.withValues(alpha: 0.2),
             ),
           ),
           padding: const EdgeInsets.all(24),
@@ -131,16 +133,16 @@ class SkillsSection extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: Theme.of(
                         context,
-                      ).colorScheme.primary.withOpacity(0.1),
+                      ).colorScheme.primary.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(8),
                       border: Border.all(
                         color: Theme.of(
                           context,
-                        ).colorScheme.primary.withOpacity(0.3),
+                        ).colorScheme.primary.withValues(alpha: 0.3),
                       ),
                     ),
                     child: FaIcon(
-                      FontAwesomeIcons.tools,
+                      FontAwesomeIcons.screwdriverWrench,
                       color: Theme.of(context).colorScheme.primary,
                       size: 20,
                     ),
@@ -166,7 +168,7 @@ class SkillsSection extends StatelessWidget {
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: Theme.of(
                         context,
-                      ).colorScheme.onSurface.withOpacity(0.7),
+                      ).colorScheme.onSurface.withValues(alpha: 0.7),
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -261,14 +263,14 @@ class _SkillCardState extends State<_SkillCard> {
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
               color: _isHovered
-                  ? widget.skillColor.withOpacity(0.5)
-                  : theme.colorScheme.outline.withOpacity(0.2),
+                  ? widget.skillColor.withValues(alpha: 0.5)
+                  : theme.colorScheme.outline.withValues(alpha: 0.2),
               width: _isHovered ? 2 : 1,
             ),
             boxShadow: _isHovered
                 ? [
                     BoxShadow(
-                      color: widget.skillColor.withOpacity(0.2),
+                      color: widget.skillColor.withValues(alpha: 0.2),
                       blurRadius: 8,
                       offset: const Offset(0, 4),
                     ),
@@ -282,7 +284,7 @@ class _SkillCardState extends State<_SkillCard> {
                 Container(
                   padding: EdgeInsets.all(iconPadding),
                   decoration: BoxDecoration(
-                    color: widget.skillColor.withOpacity(0.1),
+                    color: widget.skillColor.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: FaIcon(
@@ -356,15 +358,15 @@ class _ModernFilterChipState extends State<_ModernFilterChip> {
             color: widget.isSelected
                 ? null
                 : (_isHovered
-                      ? theme.colorScheme.primary.withOpacity(0.1)
+                      ? theme.colorScheme.primary.withValues(alpha: 0.1)
                       : theme.colorScheme.surface),
             borderRadius: BorderRadius.circular(25),
             border: Border.all(
               color: widget.isSelected
                   ? Colors.transparent
                   : (_isHovered
-                        ? theme.colorScheme.primary.withOpacity(0.5)
-                        : theme.colorScheme.outline.withOpacity(0.3)),
+                        ? theme.colorScheme.primary.withValues(alpha: 0.5)
+                        : theme.colorScheme.outline.withValues(alpha: 0.3)),
               width: 1.5,
             ),
             boxShadow: widget.isSelected || _isHovered
@@ -374,7 +376,7 @@ class _ModernFilterChipState extends State<_ModernFilterChip> {
                           (widget.isSelected
                                   ? theme.colorScheme.primary
                                   : theme.colorScheme.outline)
-                              .withOpacity(0.2),
+                              .withValues(alpha: 0.2),
                       blurRadius: 8,
                       offset: const Offset(0, 2),
                     ),
@@ -416,7 +418,7 @@ class _ModernFilterChipState extends State<_ModernFilterChip> {
   IconData _getCategoryIcon(String category) {
     switch (category.toLowerCase()) {
       case 'all':
-        return FontAwesomeIcons.th;
+        return FontAwesomeIcons.tableCells;
       case 'mobile development':
         return FontAwesomeIcons.mobile;
       case 'programming language':
@@ -432,7 +434,7 @@ class _ModernFilterChipState extends State<_ModernFilterChip> {
       case 'ide':
         return FontAwesomeIcons.laptop;
       case 'ui/ux':
-        return FontAwesomeIcons.paintBrush;
+        return FontAwesomeIcons.paintbrush;
       default:
         return FontAwesomeIcons.tag;
     }

@@ -202,7 +202,7 @@ class HeroSection extends StatelessWidget {
         ),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFF007ACC).withOpacity(0.3),
+            color: const Color(0xFF007ACC).withValues(alpha: 0.3),
             blurRadius: 30,
             offset: const Offset(0, 15),
           ),
@@ -396,7 +396,7 @@ class _ModernActionButtonState extends State<_ModernActionButton> {
             boxShadow: widget.isPrimary && _isHovered
                 ? [
                     BoxShadow(
-                      color: const Color(0xFF007ACC).withOpacity(0.4),
+                      color: const Color(0xFF007ACC).withValues(alpha: 0.4),
                       blurRadius: 12,
                       offset: const Offset(0, 4),
                     ),

@@ -19,8 +19,38 @@ class ContactView extends StatelessWidget {
   }
 }
 
-class ContactViewContent extends StatelessWidget {
+class ContactViewContent extends StatefulWidget {
   const ContactViewContent({super.key});
+
+  @override
+  State<ContactViewContent> createState() => _ContactViewContentState();
+}
+
+class _ContactViewContentState extends State<ContactViewContent>
+    with TickerProviderStateMixin {
+  late AnimationController _heroAnimationController;
+  late Animation<double> _heroFadeAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _heroAnimationController = AnimationController(
+      duration: const Duration(milliseconds: 1000),
+      vsync: this,
+    );
+
+    _heroFadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(parent: _heroAnimationController, curve: Curves.easeOut),
+    );
+
+    _heroAnimationController.forward();
+  }
+
+  @override
+  void dispose() {
+    _heroAnimationController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,8 +99,11 @@ class ContactViewContent extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            // Hero Section
-            _buildHeroSection(context),
+            // Fade Hero Section
+            FadeTransition(
+              opacity: _heroFadeAnimation,
+              child: _buildHeroSection(context),
+            ),
 
             // Main Content
             Container(
@@ -121,8 +154,8 @@ class ContactViewContent extends StatelessWidget {
           end: Alignment.bottomRight,
           colors: [
             theme.colorScheme.surface,
-            theme.colorScheme.surface.withOpacity(0.8),
-            theme.colorScheme.primary.withOpacity(0.05),
+            theme.colorScheme.surface.withValues(alpha: 0.8),
+            theme.colorScheme.primary.withValues(alpha: 0.05),
           ],
         ),
       ),
@@ -146,7 +179,7 @@ class ContactViewContent extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
                 boxShadow: [
                   BoxShadow(
-                    color: theme.colorScheme.primary.withOpacity(0.3),
+                    color: theme.colorScheme.primary.withValues(alpha: 0.3),
                     blurRadius: 20,
                     offset: const Offset(0, 8),
                   ),
@@ -179,7 +212,7 @@ class ContactViewContent extends StatelessWidget {
               child: Text(
                 'Ready to turn your ideas into reality? I\'m here to help you create exceptional digital experiences that make a lasting impact.',
                 style: theme.textTheme.titleLarge?.copyWith(
-                  color: theme.colorScheme.onSurface.withOpacity(0.7),
+                  color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                   fontWeight: FontWeight.w400,
                   height: 1.6,
                 ),
@@ -222,7 +255,7 @@ class ContactViewContent extends StatelessWidget {
         Text(
           label,
           style: theme.textTheme.bodyMedium?.copyWith(
-            color: theme.colorScheme.onSurface.withOpacity(0.6),
+            color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
             fontWeight: FontWeight.w500,
           ),
         ),
@@ -240,12 +273,14 @@ class ContactViewContent extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            theme.colorScheme.primary.withOpacity(0.1),
-            theme.colorScheme.secondary.withOpacity(0.1),
+            theme.colorScheme.primary.withValues(alpha: 0.1),
+            theme.colorScheme.secondary.withValues(alpha: 0.1),
           ],
         ),
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: theme.colorScheme.outline.withOpacity(0.1)),
+        border: Border.all(
+          color: theme.colorScheme.outline.withValues(alpha: 0.1),
+        ),
       ),
       child: Column(
         children: [
@@ -267,7 +302,7 @@ class ContactViewContent extends StatelessWidget {
           Text(
             'Don\'t hesitate to reach out. Every great project starts with a simple conversation.',
             style: theme.textTheme.bodyLarge?.copyWith(
-              color: theme.colorScheme.onSurface.withOpacity(0.7),
+              color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
             ),
             textAlign: TextAlign.center,
           ),

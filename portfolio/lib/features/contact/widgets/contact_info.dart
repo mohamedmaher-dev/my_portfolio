@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../../../core/services/portfolio_service.dart';
 
 class ContactInfo extends StatelessWidget {
   const ContactInfo({super.key});
@@ -8,6 +9,8 @@ class ContactInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final portfolioService = PortfolioService();
+    final contactInfo = portfolioService.getContactInfo();
 
     return Column(
       children: [
@@ -20,13 +23,13 @@ class ContactInfo extends StatelessWidget {
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: [
-                theme.colorScheme.primary.withOpacity(0.1),
-                theme.colorScheme.secondary.withOpacity(0.05),
+                theme.colorScheme.primary.withValues(alpha: 0.1),
+                theme.colorScheme.secondary.withValues(alpha: 0.05),
               ],
             ),
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
-              color: theme.colorScheme.outline.withOpacity(0.1),
+              color: theme.colorScheme.outline.withValues(alpha: 0.1),
             ),
           ),
           child: Column(
@@ -46,7 +49,9 @@ class ContactInfo extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                       boxShadow: [
                         BoxShadow(
-                          color: theme.colorScheme.primary.withOpacity(0.3),
+                          color: theme.colorScheme.primary.withValues(
+                            alpha: 0.3,
+                          ),
                           blurRadius: 8,
                           offset: const Offset(0, 4),
                         ),
@@ -72,7 +77,7 @@ class ContactInfo extends StatelessWidget {
               Text(
                 'Feel free to reach out through any of these channels',
                 style: theme.textTheme.bodyMedium?.copyWith(
-                  color: theme.colorScheme.onSurface.withOpacity(0.7),
+                  color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                 ),
               ),
             ],
@@ -122,11 +127,11 @@ class ContactInfo extends StatelessWidget {
             color: theme.colorScheme.surface,
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
-              color: theme.colorScheme.outline.withOpacity(0.1),
+              color: theme.colorScheme.outline.withValues(alpha: 0.1),
             ),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.05),
+                color: Colors.black.withValues(alpha: 0.05),
                 blurRadius: 10,
                 offset: const Offset(0, 4),
               ),
@@ -158,7 +163,7 @@ class ContactInfo extends StatelessWidget {
               Text(
                 'Connect with me on these platforms',
                 style: theme.textTheme.bodyMedium?.copyWith(
-                  color: theme.colorScheme.onSurface.withOpacity(0.7),
+                  color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                 ),
               ),
 
@@ -172,31 +177,27 @@ class ContactInfo extends StatelessWidget {
                   _ModernSocialButton(
                     icon: FontAwesomeIcons.github,
                     label: 'GitHub',
-                    color: const Color(0xFF333333),
+                    color: const Color(0xFF6B7280),
                     onPressed: () =>
-                        _launchUrl('https://github.com/yourusername'),
+                        _launchUrl('https://github.com/mohamedmaher-dev'),
                   ),
                   _ModernSocialButton(
                     icon: FontAwesomeIcons.linkedin,
                     label: 'LinkedIn',
                     color: const Color(0xFF0077B5),
-                    onPressed: () =>
-                        _launchUrl('https://linkedin.com/in/yourusername'),
-                  ),
-                  _ModernSocialButton(
-                    icon: FontAwesomeIcons.googlePlay,
-                    label: 'Play Store',
-                    color: const Color(0xFF01875F),
                     onPressed: () => _launchUrl(
-                      'https://play.google.com/store/apps/developer?id=YourDeveloperName',
+                      contactInfo['linkedin'] ??
+                          'https://linkedin.com/in/mohamedmaher-dev',
                     ),
                   ),
                   _ModernSocialButton(
-                    icon: FontAwesomeIcons.twitter,
-                    label: 'Twitter',
-                    color: const Color(0xFF1DA1F2),
-                    onPressed: () =>
-                        _launchUrl('https://twitter.com/yourusername'),
+                    icon: FontAwesomeIcons.facebook,
+                    label: 'Facebook',
+                    color: const Color(0xFF1877F2),
+                    onPressed: () => _launchUrl(
+                      contactInfo['facebook'] ??
+                          'https://facebook.com/mohamedmaher.dev',
+                    ),
                   ),
                 ],
               ),
@@ -213,12 +214,12 @@ class ContactInfo extends StatelessWidget {
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                Colors.green.withOpacity(0.1),
-                Colors.blue.withOpacity(0.05),
+                Colors.green.withValues(alpha: 0.1),
+                Colors.blue.withValues(alpha: 0.05),
               ],
             ),
             borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: Colors.green.withOpacity(0.2)),
+            border: Border.all(color: Colors.green.withValues(alpha: 0.2)),
           ),
           child: Row(
             children: [
@@ -249,7 +250,9 @@ class ContactInfo extends StatelessWidget {
                     Text(
                       'I typically respond within 24 hours',
                       style: theme.textTheme.bodySmall?.copyWith(
-                        color: theme.colorScheme.onSurface.withOpacity(0.7),
+                        color: theme.colorScheme.onSurface.withValues(
+                          alpha: 0.7,
+                        ),
                       ),
                     ),
                   ],
@@ -289,9 +292,15 @@ class ContactInfo extends StatelessWidget {
   }
 
   void _launchUrl(String url) async {
-    final Uri uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri, mode: LaunchMode.externalApplication);
+    try {
+      final Uri uri = Uri.parse(url);
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(uri, mode: LaunchMode.externalApplication);
+      } else {
+        print('Could not launch URL: $url');
+      }
+    } catch (e) {
+      print('Error launching URL: $url - $e');
     }
   }
 }
@@ -336,25 +345,25 @@ class _ModernContactItemState extends State<_ModernContactItem> {
           decoration: BoxDecoration(
             color: _isHovered
                 ? theme.colorScheme.surface
-                : theme.colorScheme.surface.withOpacity(0.5),
+                : theme.colorScheme.surface.withValues(alpha: 0.5),
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
               color: _isHovered
-                  ? widget.iconColor.withOpacity(0.3)
-                  : theme.colorScheme.outline.withOpacity(0.1),
+                  ? widget.iconColor.withValues(alpha: 0.3)
+                  : theme.colorScheme.outline.withValues(alpha: 0.1),
               width: _isHovered ? 2 : 1,
             ),
             boxShadow: _isHovered
                 ? [
                     BoxShadow(
-                      color: widget.iconColor.withOpacity(0.1),
+                      color: widget.iconColor.withValues(alpha: 0.1),
                       blurRadius: 12,
                       offset: const Offset(0, 4),
                     ),
                   ]
                 : [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.05),
+                      color: Colors.black.withValues(alpha: 0.05),
                       blurRadius: 6,
                       offset: const Offset(0, 2),
                     ),
@@ -365,9 +374,11 @@ class _ModernContactItemState extends State<_ModernContactItem> {
               Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: widget.iconColor.withOpacity(0.1),
+                  color: widget.iconColor.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: widget.iconColor.withOpacity(0.2)),
+                  border: Border.all(
+                    color: widget.iconColor.withValues(alpha: 0.2),
+                  ),
                 ),
                 child: FaIcon(widget.icon, color: widget.iconColor, size: 20),
               ),
@@ -395,7 +406,9 @@ class _ModernContactItemState extends State<_ModernContactItem> {
                     Text(
                       widget.description,
                       style: theme.textTheme.bodySmall?.copyWith(
-                        color: theme.colorScheme.onSurface.withOpacity(0.6),
+                        color: theme.colorScheme.onSurface.withValues(
+                          alpha: 0.6,
+                        ),
                       ),
                     ),
                   ],
@@ -405,7 +418,7 @@ class _ModernContactItemState extends State<_ModernContactItem> {
                 FaIcon(
                   FontAwesomeIcons.arrowUpRightFromSquare,
                   size: 14,
-                  color: theme.colorScheme.onSurface.withOpacity(0.4),
+                  color: theme.colorScheme.onSurface.withValues(alpha: 0.4),
                 ),
             ],
           ),
@@ -450,25 +463,32 @@ class _ModernSocialButtonState extends State<_ModernSocialButton> {
           decoration: BoxDecoration(
             gradient: _isHovered
                 ? LinearGradient(
-                    colors: [widget.color, widget.color.withOpacity(0.8)],
+                    colors: [widget.color, widget.color.withValues(alpha: 0.8)],
                   )
                 : null,
-            color: _isHovered ? null : widget.color.withOpacity(0.1),
+            color: _isHovered ? null : widget.color.withValues(alpha: 0.15),
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
               color: _isHovered
                   ? Colors.transparent
-                  : widget.color.withOpacity(0.3),
+                  : widget.color.withValues(alpha: 0.6),
+              width: 1.5,
             ),
             boxShadow: _isHovered
                 ? [
                     BoxShadow(
-                      color: widget.color.withOpacity(0.3),
+                      color: widget.color.withValues(alpha: 0.3),
                       blurRadius: 8,
                       offset: const Offset(0, 4),
                     ),
                   ]
-                : null,
+                : [
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.05),
+                      blurRadius: 4,
+                      offset: const Offset(0, 2),
+                    ),
+                  ],
           ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
@@ -476,14 +496,18 @@ class _ModernSocialButtonState extends State<_ModernSocialButton> {
               FaIcon(
                 widget.icon,
                 size: 16,
-                color: _isHovered ? Colors.white : widget.color,
+                color: _isHovered
+                    ? Colors.white
+                    : widget.color.withValues(alpha: 0.9),
               ),
               const SizedBox(width: 8),
               Text(
                 widget.label,
                 style: theme.textTheme.bodyMedium?.copyWith(
-                  color: _isHovered ? Colors.white : widget.color,
-                  fontWeight: FontWeight.w500,
+                  color: _isHovered
+                      ? Colors.white
+                      : widget.color.withValues(alpha: 0.9),
+                  fontWeight: FontWeight.w600,
                 ),
               ),
             ],
