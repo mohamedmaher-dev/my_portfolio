@@ -366,58 +366,41 @@ class _ModernActionButton extends StatefulWidget {
 }
 
 class _ModernActionButtonState extends State<_ModernActionButton> {
-  bool _isHovered = false;
-
   @override
   Widget build(BuildContext context) {
-    return MouseRegion(
-      onEnter: (_) => setState(() => _isHovered = true),
-      onExit: (_) => setState(() => _isHovered = false),
-      child: GestureDetector(
-        onTap: widget.onPressed,
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
-          decoration: BoxDecoration(
-            gradient: widget.isPrimary
-                ? LinearGradient(
-                    colors: [const Color(0xFF007ACC), const Color(0xFF4EC9B0)],
-                  )
-                : null,
-            color: widget.isPrimary ? null : Colors.transparent,
-            border: Border.all(
-              color: widget.isPrimary
-                  ? Colors.transparent
-                  : (_isHovered
-                        ? const Color(0xFF007ACC)
-                        : const Color(0xFF464647)),
-              width: 2,
-            ),
-            borderRadius: BorderRadius.circular(8),
-            boxShadow: widget.isPrimary && _isHovered
-                ? [
-                    BoxShadow(
-                      color: const Color(0xFF007ACC).withValues(alpha: 0.4),
-                      blurRadius: 12,
-                      offset: const Offset(0, 4),
-                    ),
-                  ]
-                : null,
+    return GestureDetector(
+      onTap: widget.onPressed,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+        decoration: BoxDecoration(
+          gradient: widget.isPrimary
+              ? LinearGradient(
+                  colors: [const Color(0xFF007ACC), const Color(0xFF4EC9B0)],
+                )
+              : null,
+          color: widget.isPrimary ? null : Colors.transparent,
+          border: Border.all(
+            color: widget.isPrimary
+                ? Colors.transparent
+                : const Color(0xFF464647),
+            width: 2,
           ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              FaIcon(widget.icon, size: 16, color: Colors.white),
-              const SizedBox(width: 8),
-              Text(
-                widget.text,
-                style: GoogleFonts.inter(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white,
-                ),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            FaIcon(widget.icon, size: 16, color: Colors.white),
+            const SizedBox(width: 8),
+            Text(
+              widget.text,
+              style: GoogleFonts.inter(
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+                color: Colors.white,
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
