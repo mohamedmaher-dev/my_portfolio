@@ -107,41 +107,62 @@ class _ExplorerPanel extends StatelessWidget {
           // Folder structure
           _FileItem(
             icon: Icons.folder_outlined,
-            name: 'src',
+            name: 'lib',
             isFolder: true,
             isExpanded: true,
             level: 1,
           ),
 
           _FileItem(
+            icon: Icons.folder_outlined,
+            name: 'features',
+            isFolder: true,
+            isExpanded: true,
+            level: 2,
+          ),
+
+          _FileItem(
             icon: Icons.home_outlined,
-            name: 'home.dart',
+            name: 'home',
             isActive: currentRoute == '/',
             onTap: () => context.go('/'),
-            level: 2,
+            level: 3,
           ),
 
           _FileItem(
             icon: Icons.person_outline,
-            name: 'about.dart',
+            name: 'about',
             isActive: currentRoute == '/about',
             onTap: () => context.go('/about'),
-            level: 2,
+            level: 3,
           ),
 
           _FileItem(
             icon: Icons.work_outline,
-            name: 'projects.dart',
+            name: 'projects',
             isActive: currentRoute == '/projects',
             onTap: () => context.go('/projects'),
-            level: 2,
+            level: 3,
           ),
 
           _FileItem(
             icon: Icons.contact_mail_outlined,
-            name: 'contact.dart',
+            name: 'contact',
             isActive: currentRoute == '/contact',
             onTap: () => context.go('/contact'),
+            level: 3,
+          ),
+
+          _FileItem(
+            icon: Icons.folder_outlined,
+            name: 'core',
+            isFolder: true,
+            level: 2,
+          ),
+
+          _FileItem(
+            icon: Icons.description_outlined,
+            name: 'main.dart',
             level: 2,
           ),
 
@@ -150,6 +171,13 @@ class _ExplorerPanel extends StatelessWidget {
           _FileItem(
             icon: Icons.folder_outlined,
             name: 'assets',
+            isFolder: true,
+            level: 1,
+          ),
+
+          _FileItem(
+            icon: Icons.folder_outlined,
+            name: 'web',
             isFolder: true,
             level: 1,
           ),

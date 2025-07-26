@@ -196,63 +196,73 @@ class PortfolioService {
     ];
   }
 
-  // Experience data - Mobile development focused
+  // Experience data - Freelance mobile development focused
   List<ExperienceModel> getExperience() {
     return [
       ExperienceModel(
         id: '1',
-        title: 'Senior Mobile Developer',
-        company: 'TechMobile Solutions',
+        title: 'Senior Freelance Mobile Developer',
+        company: 'Self-Employed / Various Clients',
         duration: '2022 - Present',
         description:
-            'Leading mobile app development team, specializing in Flutter and Kotlin. Architecting scalable mobile applications, implementing CI/CD pipelines, and mentoring junior developers in mobile development best practices.',
+            'Working independently with multiple clients to deliver high-quality mobile applications. Specializing in Flutter and Kotlin development, managing full project lifecycles from concept to deployment, and providing ongoing maintenance and support.',
         technologies: [
           'Flutter',
           'Kotlin',
           'Firebase',
-          'CI/CD',
+          'RESTful APIs',
           'Google Play Console',
+          'App Store Connect',
         ],
       ),
       ExperienceModel(
         id: '2',
-        title: 'Flutter Developer',
-        company: 'AppCraft Studio',
+        title: 'Freelance Flutter Developer',
+        company: 'Independent Contractor',
         duration: '2020 - 2022',
         description:
-            'Developed cross-platform mobile applications using Flutter. Implemented complex UI/UX designs, integrated third-party APIs, and optimized app performance for both Android and iOS platforms.',
+            'Delivered cross-platform mobile solutions for startups and small businesses. Built custom applications from scratch, integrated complex features like payment systems and real-time messaging, and ensured optimal performance across platforms.',
         technologies: [
           'Flutter',
           'Dart',
-          'REST APIs',
-          'SQLite',
+          'Firebase',
+          'Stripe Integration',
           'Provider',
           'BLoC',
+          'SQLite',
         ],
       ),
       ExperienceModel(
         id: '3',
-        title: 'Android Developer',
-        company: 'Mobile Innovations Inc.',
+        title: 'Mobile App Consultant',
+        company: 'Freelance Projects',
         duration: '2019 - 2020',
         description:
-            'Built native Android applications using Kotlin and Java. Worked with Material Design guidelines, implemented local databases, and integrated various Android SDKs and APIs.',
+            'Provided mobile development consulting services, specializing in native Android development. Helped clients choose the right technology stack, implemented Material Design principles, and delivered scalable mobile solutions.',
         technologies: [
           'Kotlin',
           'Java',
           'Android SDK',
           'Room Database',
           'Retrofit',
+          'Material Design',
         ],
       ),
       ExperienceModel(
         id: '4',
-        title: 'Mobile App Developer (Intern)',
-        company: 'StartupTech',
+        title: 'Junior Mobile Developer',
+        company: 'Freelance & Learning Projects',
         duration: '2018 - 2019',
         description:
-            'Started mobile development journey with Flutter and native Android. Contributed to multiple mobile projects, learned mobile development fundamentals, and gained experience with app store deployment.',
-        technologies: ['Flutter', 'Dart', 'Kotlin', 'Firebase', 'Git'],
+            'Started mobile development journey by building personal projects and taking on small freelance assignments. Focused on learning Flutter and Android development, contributing to open-source projects, and building a portfolio of mobile applications.',
+        technologies: [
+          'Flutter',
+          'Dart',
+          'Kotlin',
+          'Firebase',
+          'Git',
+          'GitHub',
+        ],
       ),
     ];
   }
